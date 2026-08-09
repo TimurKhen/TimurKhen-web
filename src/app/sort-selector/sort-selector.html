@@ -1,0 +1,41 @@
+<div class="sort-selector-container" [class.is-open]="isOpen()">
+  <button
+    type="button"
+    class="sort-trigger-button"
+    [attr.aria-expanded]="isOpen()"
+    aria-label="Select sorting method"
+    (click)="toggleOpen()"
+  >
+    <div class="active-label">
+      <mat-icon class="sort-icon">{{ activeOption().icon }}</mat-icon>
+      <span class="sort-text">{{ activeOption().label }}</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <mat-icon class="arrow-icon">
+      {{ isOpen() ? 'arrow_drop_up' : 'arrow_drop_down' }}
+    </mat-icon>
+  </button>
+
+  @if (isOpen()) {
+    <div class="sort-options-menu" role="listbox">
+      @for (opt of options(); track opt.id) {
+        <button
+          type="button"
+          class="sort-option-item"
+          [class.is-selected]="opt.id === currentMethod()"
+          role="option"
+          [attr.aria-selected]="opt.id === currentMethod()"
+          (click)="selectOption(opt.id)"
+        >
+          <mat-icon class="sort-icon">{{ opt.icon }}</mat-icon>
+          <span class="sort-text">{{ opt.label }}</span>
+          @if (opt.id === currentMethod()) {
+            <mat-icon class="check-icon">check</mat-icon>
+          }
+        </button>
+      }
+    </div>
+  }
+</div>

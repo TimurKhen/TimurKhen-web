@@ -1,0 +1,27 @@
+{
+  "PROJECTS": {
+    "SORT_BY": "Sort by",
+    "REPOS": {
+      "KPTUBE": {
+        "DESC": "Custom video hosting and media sharing platform.",
+        "FEAT_1": "JWT authorization",
+        "FEAT_2": "Backend integration"
+      },
+      "KRUTOY": {
+        "DESC": "Telegram Mini App clicker.",
+        "FEAT_1": "Telegram API",
+        "FEAT_2": "Backend integration"
+      },
+      "SNAKE": {
+        "DESC": "3D Snake on Three.JS"
+      },
+      "SBER": {
+        "DESC": "Developed solution for the Sber IT case during practice."
+      },
+      "TECHNO": {
+        "DESC": "Sber case solution at the hackathon.",
+        "FEAT_1": "Working under tight deadlines"
+      }
+    }
+  }
+}

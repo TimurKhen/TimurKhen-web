@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="avatar">
+    <div class="avatar-wrapper">
+      <a href="https://t.me/TimurKhen" target="_blank" class="floating-link telegram" [style.transform]="getTransform(1.5)">
+        <img src="telegram.svg" alt="Telegram"> Telegram
+      </a>
+
+      <a href="https://github.com/TimurKhen" target="_blank" class="floating-link github" [style.transform]="getTransform(0.8)">
+        <img src="github.svg" alt="Github"> Github
+      </a>
+
+      <a href="https://www.npmjs.com/~gvins" target="_blank" class="floating-link npm" [style.transform]="getTransform(1.2)">
+        <img src="npm.svg" alt="NPM"> NPM
+      </a>
+
+      <img src="avatar.jpg" width="360" height="360">
+    </div>
+
+    <p>Timur Khen</p>
+    <h2>I am <app-technology-shower [isBorderRounded]="false" [technology]="'Angular'" [_isOpenInput]="true" [canClose]="false"></app-technology-shower> Frontend Developer</h2>
+  </div>
+
+  <div class="stack">
+    <p>Tech stack:</p>
+    @for (item of stack; track item) {
+      <app-technology-shower [technology]="item"></app-technology-shower>
+    }
+  </div>
+</div>
