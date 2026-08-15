@@ -1,60 +1,18 @@
-<div class="container">
-  <h2>Projects</h2>
-  <div class="sort">
-    <p>{{ 'PROJECTS.SORT_BY' | translate }}</p>
-    <app-sort-selector (sortChange)="updateList($event)"></app-sort-selector>
-  </div>
+<div
+  class="scroller"
+  [attr.data-direction]="direction()"
+  [attr.data-speed]="speed()"
+  [attr.data-animated]="isAnimated()"
+>
+  <div class="tag-list scroller__inner">
+    @for (item of items(); track $index) {
+      <a target="_blank" [href]="item.url" [class.test]="$first">{{ item.name }}</a>
+    }
 
-  <div class="projects">
-    @for (item of repos(); track item.name) {
-      <div class="repo">
-
-        <div class="main-image-wrapper">
-          <img [src]="item.images[0]" [alt]="item.displayName" class="project-image">
-        </div>
-
-        <div class="content-wrapper">
-          <div class="master">
-            <h3>{{ item.displayName }}</h3>
-            <a target="_blank" class="link" [href]="item.clone_url">
-              <img src="github.svg" width="16" alt="GitHub Logo">
-              <p>GitHub</p>
-            </a>
-            <div class="stars">
-              <p>{{ item.stargazers_count }}</p>
-              <mat-icon>star</mat-icon>
-            </div>
-          </div>
-
-          <div class="description-area">
-            <div class="desc-text-inline">
-              <p>{{ item.description | translate }}</p>
-              <div class="tech-stack-inline">
-                @for (tech of item.technologies; track tech) {
-                  <app-technology-shower [technology]="tech"></app-technology-shower>
-                }
-              </div>
-            </div>
-
-            <ul class="features-list">
-              @for (feature of item.features; track feature) {
-                <li>{{ feature | translate }}</li>
-              }
-            </ul>
-          </div>
-
-          <div class="thumbnails">
-            @for (img of item.images.slice(1); track img; let i = $index) {
-              <img
-                [src]="img"
-                alt="Thumbnail"
-                class="thumb-image"
-                (click)="swapImage(item, i + 1)">
-            }
-          </div>
-
-        </div>
-      </div>
+    @if (isAnimated()) {
+      @for (item of items(); track $index) {
+        <a target="_blank" [href]="item.url" [class.test]="$first" aria-hidden="true">{{ item.name }}</a>
+      }
     }
   </div>
 </div>

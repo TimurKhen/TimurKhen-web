@@ -13,17 +13,36 @@
         <img src="npm.svg" alt="NPM"> NPM
       </a>
 
-      <img src="avatar.jpg" width="360" height="360">
+      <img src="avatar.jpg" width="360" height="360" alt="Avatar">
     </div>
 
     <p>Timur Khen</p>
-    <h2>I am <app-technology-shower [isBorderRounded]="false" [technology]="'Angular'" [_isOpenInput]="true" [canClose]="false"></app-technology-shower> Frontend Developer</h2>
+    <h2>
+      I am
+      <app-technology-shower
+        [isBorderRounded]="false"
+        [technology]="'Angular'"
+        [_isOpenInput]="true"
+        [canClose]="false"
+      ></app-technology-shower>
+      Frontend Developer
+    </h2>
   </div>
 
   <div class="stack">
     <p>Tech stack:</p>
-    @for (item of stack; track item) {
-      <app-technology-shower [technology]="item"></app-technology-shower>
-    }
+    <div class="stack-list">
+      @for (item of stack; track item) {
+        <app-technology-shower [technology]="item"></app-technology-shower>
+      }
+    </div>
+  </div>
+
+  <div class="projects">
+    <p>Projects:</p>
+    <app-projects
+      [direction]="'left'"
+      [speed]="'fast'"
+    ></app-projects>
   </div>
 </div>
