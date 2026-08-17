@@ -10,7 +10,7 @@ import { Projects } from '../projects/projects';
 })
 export class Stack implements OnInit {
   isMobile = false;
-  stack = ['Angular', 'JS', 'TS', 'HTML', 'CSS', 'SCSS', 'Python'];
+  stack = ['Angular', 'JS', 'TS', 'HTML', 'CSS', 'SCSS', 'Docker'];
 
   mouseX = 0;
   mouseY = 0;

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
 
 export type SupportedTechnology =
-  'Angular' | 'JS' | 'TS' | 'HTML' | 'CSS' | 'SCSS' | 'Python' | string;
+  'Angular' | 'JS' | 'TS' | 'HTML' | 'CSS' | 'SCSS' | 'Python' | 'Docker' | string;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -51,6 +51,8 @@ export class TechnologyShower {
         return 'linear-gradient(135deg, #CF649A 0%, #902F62 100%)';
       case 'python':
         return 'linear-gradient(135deg, #3776AB 0%, #1E415E 100%)';
+      case 'docker':
+        return 'linear-gradient(135deg, #3178C6 0%, #194F88 100%)';
       default:
         return 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)';
     }
