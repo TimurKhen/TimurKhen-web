@@ -1,0 +1,17 @@
+.container {
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+
+  .items {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+
+    @media (screen and max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

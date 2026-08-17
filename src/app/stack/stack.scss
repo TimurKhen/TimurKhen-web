@@ -7,10 +7,6 @@
   align-items: center;
   gap: 4rem;
 
-  @media (screen and max-width: 900px) {
-    padding-bottom: 10dvh;
-  }
-
   .avatar {
     display: flex;
     flex-direction: column;
