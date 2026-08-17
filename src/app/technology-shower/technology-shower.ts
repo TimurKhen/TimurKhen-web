@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  Input,
+  input,
+  signal,
+} from '@angular/core';
 
 export type SupportedTechnology =
   'Angular' | 'JS' | 'TS' | 'HTML' | 'CSS' | 'SCSS' | 'Python' | 'Docker' | string;
@@ -23,6 +31,7 @@ export class TechnologyShower {
   canOpen = input<boolean>(true);
   canClose = input<boolean>(true);
   _isOpenInput = input<boolean>(false);
+  timeout = input<number | null>(null);
   customGradient = input<string | null>(null);
   size = input<'sm' | 'md' | 'lg' | 'xl'>('md');
   isBorderRounded = input<boolean>(true);
@@ -73,7 +82,13 @@ export class TechnologyShower {
 
   constructor() {
     effect(() => {
-      this.isOpen.set(this._isOpenInput());
+      if (this.timeout()) {
+        setTimeout(() => {
+          this.isOpen.set(this._isOpenInput());
+        }, Number(this.timeout()));
+      } else {
+        this.isOpen.set(this._isOpenInput());
+      }
     });
   }
 
