@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class Stack implements OnInit {
   isMobile = false;
-  stack = ['Angular', 'JS', 'TS', 'HTML', 'CSS', 'SCSS', 'Docker'];
+  stack = ['Angular', 'JS', 'TS', 'HTML', 'CSS', 'SCSS', 'Docker', 'RxJS', 'TaigaUI'];
 
   mouseX = 0;
   mouseY = 0;

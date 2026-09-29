@@ -36,23 +36,23 @@ body {
   margin: 0;
   height: 100%;
 }
-/* You can add global styles to this file, and also import other style files */
+
 :root {
-  --anthropic-bg: #141413;
-  --anthropic-surface: #1b1a18;
-  --anthropic-surface-hover: #22201d;
-  --anthropic-surface-elevated: #282622;
-  --anthropic-border: #2d2b27;
-  --anthropic-border-subtle: #24221f;
-  --anthropic-border-hover: #48443e;
-  --anthropic-terracotta: #d97757;
-  --anthropic-terracotta-light: #e88c6e;
-  --anthropic-terracotta-muted: rgba(217, 119, 87, 0.15);
-  --anthropic-sand: #eed8cb;
-  --anthropic-amber: #e2b47d;
-  --anthropic-text-primary: #f5f4ef;
-  --anthropic-text-secondary: #a39e94;
-  --anthropic-text-muted: #736e65;
+  --color-bg: #141413;
+  --color-surface: #1b1a18;
+  --color-surface-hover: #22201d;
+  --color-surface-elevated: #282622;
+  --color-border: #2d2b27;
+  --color-border-subtle: #24221f;
+  --color-border-hover: #48443e;
+  --color-terracotta: #cab4ad;
+  --color-terracotta-light: #e1a696;
+  --color-terracotta-muted: rgba(217, 119, 87, 0.15);
+  --color-sand: #eed8cb;
+  --color-amber: #e2b47d;
+  --color-text-primary: #f5f4ef;
+  --color-text-secondary: #a39e94;
+  --color-text-muted: #736e65;
   --font-serif: 'Newsreader', 'Times New Roman', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
@@ -63,8 +63,8 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: var(--anthropic-bg);
-  color: var(--anthropic-text-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 16px;
@@ -85,7 +85,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: var(--anthropic-bg);
+  background: var(--color-bg);
 }
 
 body::-webkit-scrollbar-thumb {

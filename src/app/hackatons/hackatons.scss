@@ -10,7 +10,7 @@
   }
 }
 
-/* Section Header */
+
 .section-header {
   margin-bottom: 2.5rem;
   display: flex;
@@ -24,7 +24,7 @@
     font-family: var(--font-mono, monospace);
     font-size: 0.8rem;
     letter-spacing: 0.15em;
-    color: var(--anthropic-terracotta, #d97757);
+    color: var(--color-terracotta, #d97757);
     margin-bottom: 0.75rem;
 
     .chapter-number {
@@ -32,7 +32,7 @@
     }
 
     .chapter-divider {
-      color: var(--anthropic-text-muted, #736e65);
+      color: var(--color-text-muted, #736e65);
     }
 
     .chapter-tag {
@@ -47,7 +47,7 @@
     font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.02em;
-    color: var(--anthropic-text-primary, #f5f4ef);
+    color: var(--color-text-primary, #f5f4ef);
     margin: 0 0 1rem 0;
 
     @media (max-width: 768px) {
@@ -58,13 +58,13 @@
   .section-lead {
     font-size: 1.05rem;
     line-height: 1.6;
-    color: var(--anthropic-text-secondary, #a39e94);
+    color: var(--color-text-secondary, #a39e94);
     max-width: 720px;
     margin: 0;
   }
 }
 
-/* Hackathons List */
+
 .hackathons-list {
   display: flex;
   flex-direction: column;
@@ -72,7 +72,7 @@
   margin-bottom: 3.5rem;
 }
 
-/* Philosophy Strip */
+
 .philosophy-strip {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -84,8 +84,8 @@
 
   .philosophy-card {
     padding: 1.5rem 1.75rem;
-    background-color: var(--anthropic-surface, #1b1a18);
-    border: 1px solid var(--anthropic-border, #2d2b27);
+    background-color: var(--color-surface, #1b1a18);
+    border: 1px solid var(--color-border, #2d2b27);
     border-radius: 14px;
     display: flex;
     flex-direction: column;
@@ -93,8 +93,8 @@
     transition: border-color 0.2s ease, background-color 0.2s ease;
 
     &:hover {
-      background-color: var(--anthropic-surface-hover, #22201d);
-      border-color: var(--anthropic-border-hover, #48443e);
+      background-color: var(--color-surface-hover, #22201d);
+      border-color: var(--color-border-hover, #48443e);
     }
 
     .phil-header {
@@ -106,14 +106,14 @@
         font-size: 1.25rem;
         width: 1.25rem;
         height: 1.25rem;
-        color: var(--anthropic-terracotta, #d97757);
+        color: var(--color-terracotta, #d97757);
       }
 
       .phil-title {
         font-family: var(--font-serif, serif);
         font-size: 1.15rem;
         font-weight: 500;
-        color: var(--anthropic-text-primary, #f5f4ef);
+        color: var(--color-text-primary, #f5f4ef);
         margin: 0;
       }
     }
@@ -121,7 +121,7 @@
     .phil-text {
       font-size: 0.875rem;
       line-height: 1.55;
-      color: var(--anthropic-text-secondary, #a39e94);
+      color: var(--color-text-secondary, #a39e94);
       margin: 0;
     }
   }

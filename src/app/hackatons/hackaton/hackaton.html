@@ -1,6 +1,5 @@
 <article class="hackathon-card" [attr.data-placement]="placementType()">
   <div class="card-inner">
-    <!-- Left Column: Visual Emblem & Fast Specs -->
     <div class="visual-sidebar">
       <div class="emblem-box">
         <img
@@ -21,7 +20,6 @@
         }
       </div>
 
-      <!-- Quick Metrics Table -->
       <div class="quick-metrics">
         @for (m of metrics(); track m.label) {
           <div class="metric-row">
@@ -32,50 +30,35 @@
       </div>
     </div>
 
-    <!-- Right Column: Editorial Details -->
     <div class="content-body">
-      <!-- Placement & Meta Row -->
       <div class="header-meta">
         <span class="placement-badge">{{ placementTag() }}</span>
-        <span class="meta-dot" aria-hidden="true">·</span>
-        <span class="edition-tag">{{ edition() }}</span>
-        <span class="meta-dot" aria-hidden="true">·</span>
-        <span class="role-tag">{{ role() }}</span>
       </div>
 
       <div class="title-group">
         <h3 class="hackathon-title">{{ name() }}</h3>
-        <p class="hackathon-subtitle">{{ subtitle() }}</p>
-        <span class="organizer-label">{{ organizer() }}</span>
       </div>
 
       <p class="hackathon-desc">{{ description() }}</p>
 
       <div class="solution-highlight">
         <div class="highlight-lead">
-          <mat-icon class="highlight-icon">offline_bolt</mat-icon>
-          <span class="highlight-title">Solution Architecture & Deliverable:</span>
+          <span class="highlight-title">Description:</span>
         </div>
         <p class="highlight-text">{{ solutionSummary() }}</p>
-      </div>
-
-      <div class="achievements-section">
-        <div class="achievements-title">Sprint Achievements:</div>
-        <ul class="achievements-list">
-          @for (ach of achievements(); track ach) {
-            <li class="achievement-item">
-              <span class="bullet" aria-hidden="true">—</span>
-              <span class="ach-text">{{ ach }}</span>
-            </li>
-          }
-        </ul>
       </div>
 
       <div class="tech-row">
         <span class="tech-label">Stack:</span>
         <div class="tech-tags">
           @for (tech of technologies(); track tech) {
-            <span class="tech-tag">{{ tech }}</span>
+            <app-technology-shower
+              [isBorderRounded]="true"
+              [technology]="tech"
+              [_isOpenInput]="false"
+              [canClose]="true"
+              [size]="'sm'"
+            ></app-technology-shower>
           }
         </div>
       </div>
