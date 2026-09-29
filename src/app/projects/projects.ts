@@ -1,46 +1,98 @@
-import { Component, input, OnInit, signal } from '@angular/core';
-
-interface items {
-  name: string;
-  url: string;
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  signal,
+} from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { ProjectFilterCategory, ProjectItem } from './project.model';
+import { TechnologyShower } from '../technology-shower/technology-shower';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-projects',
-  imports: [],
+  imports: [MatIconModule, TechnologyShower],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
-export class Projects implements OnInit {
-  items = input<items[]>([
+export class Projects {
+  activeFilter = signal<ProjectFilterCategory>('all');
+
+  readonly allProjects = signal<ProjectItem[]>([
     {
+      id: 'kptube',
       name: 'KPTube',
-      url: 'https://github.com/TimurKhen/kpTubeFront',
+      category: 'web',
+      description:
+        'A high-performance video-player web application built with Angular and RxJS, featuring custom video playback controls.',
+      techStack: ['Angular', 'TS', 'RxJS', 'SCSS'],
+      githubUrl: 'https://github.com/TimurKhen/kpTubeFront',
+      year: '2024 – 2026',
+      status: 'Active Repository',
     },
     {
-      name: 'Krutoy Toose',
-      url: 'https://github.com/TimurKhen/krutoy-toose',
-    },
-    {
-      name: 'GZGS',
-      url: 'https://github.com/TimurKhen/GZGS-frontend',
-    },
-    {
+      id: 'sber-solution',
       name: 'FabricOfSolutions',
-      url: 'https://github.com/TimurKhen/sber-solution',
+      category: 'hackathon',
+      description:
+        'Teams challenges solution in school 21 (Sber Hackathon task).',
+      techStack: ['Angular', 'TS', 'SCSS', 'Docker'],
+      githubUrl: 'https://github.com/TimurKhen/sber-solution',
+      year: '2025 – 2026',
+      status: 'Hackathon Nominee',
+    },
+    {
+      id: 'krutoy-toose',
+      name: 'Krutoy Toose',
+      category: 'web',
+      description:
+        'Telegram Mini App Clicker - game with TMA Api connection.',
+      techStack: ['Angular', 'TS', 'CSS', 'HTML'],
+      githubUrl: 'https://github.com/TimurKhen/krutoy-toose',
+      year: '2024',
+      status: 'Production MVP',
+    },
+    {
+      id: 'gzgs',
+      name: 'GZGS',
+      category: 'web',
+      description: 'Platform to control subscriptions (qualifying of Technostrelka 2026).',
+      techStack: ['Angular', 'TS', 'SCSS', 'RxJS', 'TaigaUI'],
+      githubUrl: 'https://github.com/TimurKhen/GZGS-frontend',
+      year: '2026',
+      status: 'Archived Release',
+    },
+    {
+      id: 'angular-interface-to-io',
+      name: 'Angular Interface to IO',
+      category: 'tool',
+      description:
+        'VSCode extension that automatically parses TypeScript interfaces to generate Angular Input() and Output()',
+      techStack: ['TS', 'JS'],
+      githubUrl: 'https://github.com/TimurKhen/Angular-interface-to-io',
+      year: '2026',
+      status: 'Open Source Tool',
     },
   ]);
-  direction = input<'left' | 'right'>('left');
-  speed = input<'slow' | 'fast'>('fast');
 
-  isAnimated = signal<boolean>(false);
+  filteredProjects = computed(() => {
+    const filter = this.activeFilter();
+    const list = this.allProjects();
+    if (filter === 'all') return list;
+    return list.filter((p) => p.category === filter);
+  });
 
-  ngOnInit(): void {
-    if (typeof window !== 'undefined') {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!prefersReducedMotion) {
-        this.isAnimated.set(true);
-      }
-    }
+  filterCounts = computed(() => {
+    const list = this.allProjects();
+    return {
+      all: list.length,
+      web: list.filter((p) => p.category === 'web').length,
+      hackathon: list.filter((p) => p.category === 'hackathon').length,
+      tool: list.filter((p) => p.category === 'tool').length,
+    };
+  });
+
+  setFilter(filter: ProjectFilterCategory): void {
+    this.activeFilter.set(filter);
   }
 }

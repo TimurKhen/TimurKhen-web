@@ -1,9 +1,11 @@
-<div class="container">
-  <h2>Hackatons:</h2>
+<section id="hackathons-showcase" class="hackathons-section">
+  <header class="section-header">
+    <h2 class="section-title">Hackathons:</h2>
+  </header>
 
-  <div class="items">
-    @for (item of hackatons; track item) {
+  <div class="hackathons-list">
+    @for (item of hackatons(); track item.id) {
       <app-hackaton [data]="item"></app-hackaton>
     }
   </div>
-</div>
+</section>

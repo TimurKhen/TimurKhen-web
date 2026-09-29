@@ -28,6 +28,8 @@ export interface SortOption {
   styleUrl: './sort-selector.scss',
   host: {
     class: 'sort-selector-host',
+    '(document:click)': 'onDocumentClick($event)',
+    '(keydown.escape)': 'onEscape()',
   },
 })
 export class SortSelector {
@@ -62,14 +64,12 @@ export class SortSelector {
     this.isOpen.set(false);
   }
 
-  @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.isOpen.set(false);
     }
   }
 
-  @HostListener('keydown.escape')
   onEscape(): void {
     this.isOpen.set(false);
   }

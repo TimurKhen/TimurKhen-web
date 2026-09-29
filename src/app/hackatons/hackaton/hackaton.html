@@ -1,10 +1,67 @@
-<div class="hackaton">
-  <div class="image">
-    <img src="images/{{image()}}">
-  </div>
+<article class="hackathon-card" [attr.data-placement]="placementType()">
+  <div class="card-inner">
+    <div class="visual-sidebar">
+      <div class="emblem-box">
+        <img
+          [src]="'images/' + image()"
+          [alt]="name() + ' emblem'"
+          class="emblem-img"
+          referrerpolicy="no-referrer"
+        />
+        @if (icon()) {
+          <div class="medal-overlay">
+            <img
+              [src]="'assets/' + icon()"
+              alt="Podium award"
+              class="medal-img"
+              referrerpolicy="no-referrer"
+            />
+          </div>
+        }
+      </div>
 
-  <div class="name">
-    <app-status-shower [data]="status()"></app-status-shower>
-    <p>of {{ name() }}</p>
+      <div class="quick-metrics">
+        @for (m of metrics(); track m.label) {
+          <div class="metric-row">
+            <span class="m-label">{{ m.label }}</span>
+            <span class="m-value">{{ m.value }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="content-body">
+      <div class="header-meta">
+        <span class="placement-badge">{{ placementTag() }}</span>
+      </div>
+
+      <div class="title-group">
+        <h3 class="hackathon-title">{{ name() }}</h3>
+      </div>
+
+      <p class="hackathon-desc">{{ description() }}</p>
+
+      <div class="solution-highlight">
+        <div class="highlight-lead">
+          <span class="highlight-title">Description:</span>
+        </div>
+        <p class="highlight-text">{{ solutionSummary() }}</p>
+      </div>
+
+      <div class="tech-row">
+        <span class="tech-label">Stack:</span>
+        <div class="tech-tags">
+          @for (tech of technologies(); track tech) {
+            <app-technology-shower
+              [isBorderRounded]="true"
+              [technology]="tech"
+              [_isOpenInput]="false"
+              [canClose]="true"
+              [size]="'sm'"
+            ></app-technology-shower>
+          }
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</article>

@@ -1,18 +1,100 @@
-.header {
+.app-layout {
+  min-height: 100vh;
   width: 100%;
-  position: sticky;
-  top: 0;
-  left: 0;
+  background-color: var(--color-bg, #141413);
+  color: var(--color-text-primary, #f5f4ef);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
 }
 
-.container {
+.bottom-portfolio-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 3rem;
+  position: relative;
+  border-top: 1px solid var(--color-border, #2d2b27);
+  background: radial-gradient(circle at 50% 0%, rgba(34, 32, 29, 0.4) 0%, rgba(20, 20, 19, 0) 70%),
+              var(--color-bg, #141413);
 
-  //@media (screen and max-width: 900px) {
-  padding-bottom: 6dvh;
-  //}
+  app-projects, app-hackatons {
+    width: 100%;
+  }
+}
+
+.color-footer {
+  width: 100%;
+  border-top: 1px solid var(--color-border, #2d2b27);
+  background-color: rgba(20, 20, 19, 0.95);
+  padding: 2.5rem 1.5rem;
+  box-sizing: border-box;
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+
+      .footer-brand {
+        font-family: var(--font-serif, serif);
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--color-text-primary, #f5f4ef);
+      }
+
+      .footer-dot {
+        color: var(--color-border, #2d2b27);
+      }
+
+      .footer-role {
+        color: var(--color-text-muted, #736e65);
+        font-size: 0.85rem;
+      }
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+
+      .footer-link {
+        font-size: 0.85rem;
+        color: var(--color-text-secondary, #a39e94);
+        text-decoration: none;
+        transition: color 0.2s ease;
+        position: relative;
+
+        &:hover {
+          color: var(--color-terracotta, #d97757);
+        }
+      }
+    }
+
+    .footer-right {
+      .footer-mono {
+        font-family: var(--font-mono, monospace);
+        font-size: 0.725rem;
+        letter-spacing: 0.1em;
+        color: var(--color-text-muted, #736e65);
+        text-transform: uppercase;
+      }
+    }
+  }
 }

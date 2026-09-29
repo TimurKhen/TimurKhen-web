@@ -1,18 +1,94 @@
-<div
-  class="scroller"
-  [attr.data-direction]="direction()"
-  [attr.data-speed]="speed()"
-  [attr.data-animated]="isAnimated()"
->
-  <div class="tag-list scroller__inner">
-    @for (item of items(); track $index) {
-      <a target="_blank" [href]="item.url" [class.test]="$first">{{ item.name }}</a>
-    }
+<section id="projects-showcase" class="projects-section">
+  <header class="section-header">
+    <h2 class="section-title">Projects:</h2>
 
-    @if (isAnimated()) {
-      @for (item of items(); track $index) {
-        <a target="_blank" [href]="item.url" [class.test]="$first" aria-hidden="true">{{ item.name }}</a>
-      }
+    <div class="filter-bar" role="tablist" aria-label="Project Categories">
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeFilter() === 'all'"
+        [class.active]="activeFilter() === 'all'"
+        (click)="setFilter('all')"
+        class="filter-tab"
+      >
+        <span>All Work</span>
+        <span class="count-tag">{{ filterCounts().all }}</span>
+      </button>
+
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeFilter() === 'web'"
+        [class.active]="activeFilter() === 'web'"
+        (click)="setFilter('web')"
+        class="filter-tab"
+      >
+        <span>Web Applications</span>
+        <span class="count-tag">{{ filterCounts().web }}</span>
+      </button>
+
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeFilter() === 'hackathon'"
+        [class.active]="activeFilter() === 'hackathon'"
+        (click)="setFilter('hackathon')"
+        class="filter-tab"
+      >
+        <span>Hackathon Solutions</span>
+        <span class="count-tag">{{ filterCounts().hackathon }}</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="projects-grid">
+    @for (project of filteredProjects(); track project.id) {
+      <article class="project-card">
+        <div class="card-meta">
+          <span class="meta-item">{{ project.year }}</span>
+        </div>
+
+        <div class="card-heading">
+          <div class="title-row">
+            <h3 class="project-name">{{ project.name }}</h3>
+            <a
+              [href]="project.githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="direct-link-icon"
+              [attr.aria-label]="'Open ' + project.name + ' on GitHub'"
+            >
+              <mat-icon>north_east</mat-icon>
+            </a>
+          </div>
+        </div>
+
+        <p class="project-desc">{{ project.description }}</p>
+
+        <div class="card-stack">
+          @for (tech of project.techStack; track tech) {
+            <app-technology-shower
+              [isBorderRounded]="true"
+              [technology]="tech"
+              [_isOpenInput]="false"
+              [canClose]="true"
+              [size]="'sm'"
+            ></app-technology-shower>
+          }
+        </div>
+
+        <div class="card-actions">
+          <a
+            [href]="project.githubUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="action-btn action-github"
+          >
+            <mat-icon class="btn-icon">code</mat-icon>
+            <span>Source Code</span>
+          </a>
+        </div>
+      </article>
     }
   </div>
-</div>
+</section>

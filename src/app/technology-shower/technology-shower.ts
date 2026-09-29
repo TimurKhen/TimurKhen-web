@@ -9,7 +9,18 @@ import {
 } from '@angular/core';
 
 export type SupportedTechnology =
-  'Angular' | 'JS' | 'TS' | 'HTML' | 'CSS' | 'SCSS' | 'Python' | 'Docker' | string;
+  | 'Angular'
+  | 'JS'
+  | 'TS'
+  | 'typescript'
+  | 'HTML'
+  | 'CSS'
+  | 'SCSS'
+  | 'TaigaUI'
+  | 'Python'
+  | 'RxJS'
+  | 'Docker'
+  | string;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -55,6 +66,7 @@ export class TechnologyShower {
         return 'linear-gradient(135deg, #E34F26 0%, #F16529 100%)';
       case 'css':
         return 'linear-gradient(135deg, #1572B6 0%, #29A9DF 100%)';
+      case 'rxjs':
       case 'scss':
       case 'sass':
         return 'linear-gradient(135deg, #CF649A 0%, #902F62 100%)';
@@ -62,6 +74,8 @@ export class TechnologyShower {
         return 'linear-gradient(135deg, #3776AB 0%, #1E415E 100%)';
       case 'docker':
         return 'linear-gradient(135deg, #3178C6 0%, #194F88 100%)';
+      case 'taigaui':
+        return 'linear-gradient(135deg, #afafaf 0%, #fcfcfc 100%)';
       default:
         return 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)';
     }
