@@ -1,18 +1,269 @@
-<div
-  class="scroller"
-  [attr.data-direction]="direction()"
-  [attr.data-speed]="speed()"
-  [attr.data-animated]="isAnimated()"
->
-  <div class="tag-list scroller__inner">
-    @for (item of items(); track $index) {
-      <a target="_blank" [href]="item.url" [class.test]="$first">{{ item.name }}</a>
-    }
+<section id="projects-showcase" class="projects-section">
+  <!-- Section Header in Anthropic Editorial Style -->
+  <header class="section-header">
+    <div class="kicker-row">
+      <span class="chapter-number">01</span>
+      <span class="chapter-divider">/</span>
+      <span class="chapter-tag">ARCHIVE OF SELECTED WORK</span>
+    </div>
+    <h2 class="section-title">Engineering Projects</h2>
+    <p class="section-lead">
+      Production systems, media streaming clients, and interactive web architecture
+      engineered with modern Angular, TypeScript, and reactive state paradigms.
+    </p>
 
-    @if (isAnimated()) {
-      @for (item of items(); track $index) {
-        <a target="_blank" [href]="item.url" [class.test]="$first" aria-hidden="true">{{ item.name }}</a>
-      }
+    <!-- Filter Segmented Tabs -->
+    <div class="filter-bar" role="tablist" aria-label="Project Categories">
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeFilter() === 'all'"
+        [class.active]="activeFilter() === 'all'"
+        (click)="setFilter('all')"
+        class="filter-tab"
+      >
+        <span>All Work</span>
+        <span class="count-tag">{{ filterCounts().all }}</span>
+      </button>
+
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeFilter() === 'web'"
+        [class.active]="activeFilter() === 'web'"
+        (click)="setFilter('web')"
+        class="filter-tab"
+      >
+        <span>Web Applications</span>
+        <span class="count-tag">{{ filterCounts().web }}</span>
+      </button>
+
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeFilter() === 'hackathon'"
+        [class.active]="activeFilter() === 'hackathon'"
+        (click)="setFilter('hackathon')"
+        class="filter-tab"
+      >
+        <span>Hackathon Solutions</span>
+        <span class="count-tag">{{ filterCounts().hackathon }}</span>
+      </button>
+
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeFilter() === 'tool'"
+        [class.active]="activeFilter() === 'tool'"
+        (click)="setFilter('tool')"
+        class="filter-tab"
+      >
+        <span>Systems & Architecture</span>
+        <span class="count-tag">{{ filterCounts().tool }}</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Projects Grid -->
+  <div class="projects-grid">
+    @for (project of filteredProjects(); track project.id) {
+      <article class="project-card">
+        <!-- Quiet Unboxed Card Metadata -->
+        <div class="card-meta">
+          <span class="meta-item">{{ project.categoryLabel }}</span>
+          <span class="meta-dot" aria-hidden="true">·</span>
+          <span class="meta-item">{{ project.year }}</span>
+          <span class="meta-dot" aria-hidden="true">·</span>
+          <span class="meta-status">{{ project.status }}</span>
+        </div>
+
+        <!-- Project Title and Subtitle -->
+        <div class="card-heading">
+          <div class="title-row">
+            <h3 class="project-name">{{ project.name }}</h3>
+            <a
+              [href]="project.githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="direct-link-icon"
+              [attr.aria-label]="'Open ' + project.name + ' on GitHub'"
+            >
+              <mat-icon>north_east</mat-icon>
+            </a>
+          </div>
+          <p class="project-subtitle">{{ project.subtitle }}</p>
+        </div>
+
+        <!-- Technical Description -->
+        <p class="project-desc">{{ project.description }}</p>
+
+        <!-- Highlights List -->
+        <div class="card-highlights">
+          <div class="highlights-label">Architecture Highlights:</div>
+          <ul class="highlights-list">
+            @for (item of project.highlights.slice(0, 3); track item) {
+              <li class="highlight-item">
+                <span class="highlight-bullet" aria-hidden="true">—</span>
+                <span class="highlight-text">{{ item }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="card-stack">
+          @for (tech of project.techStack; track tech) {
+            <span class="tech-chip">{{ tech }}</span>
+          }
+        </div>
+
+        <!-- Card Footer Actions -->
+        <div class="card-actions">
+          <a
+            [href]="project.githubUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="action-btn action-github"
+          >
+            <mat-icon class="btn-icon">code</mat-icon>
+            <span>Source Code</span>
+          </a>
+
+          <button
+            type="button"
+            class="action-btn action-inspect"
+            (click)="openModal(project)"
+          >
+            <mat-icon class="btn-icon">terminal</mat-icon>
+            <span>Architecture Notes</span>
+          </button>
+        </div>
+      </article>
     }
   </div>
-</div>
+
+  <!-- Editorial Stats Overview Strip -->
+  <div class="editorial-metrics-strip">
+    <div class="metric-cell">
+      <span class="metric-number">5+</span>
+      <span class="metric-label">Repositories & Systems</span>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-number">Angular</span>
+      <span class="metric-label">Primary Frontend Framework</span>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-number">100%</span>
+      <span class="metric-label">Strict TypeScript Coverage</span>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-number">RxJS & Signals</span>
+      <span class="metric-label">State & Stream Architecture</span>
+    </div>
+  </div>
+
+  <!-- Deep Architecture Inspector Modal -->
+  @if (selectedProject(); as project) {
+    <div class="modal-backdrop" (click)="closeModal()" role="presentation">
+      <div
+        class="modal-dialog"
+        (click)="$event.stopPropagation()"
+        role="dialog"
+        aria-modal="true"
+        [attr.aria-label]="project.name + ' Architecture Details'"
+      >
+        <!-- Modal Top Bar -->
+        <div class="modal-header">
+          <div class="modal-kicker-row">
+            <span class="modal-kicker">{{ project.categoryLabel }}</span>
+            <span class="modal-dot" aria-hidden="true">·</span>
+            <span class="modal-kicker">{{ project.year }}</span>
+            <span class="modal-dot" aria-hidden="true">·</span>
+            <span class="modal-kicker-role">{{ project.role }}</span>
+          </div>
+          <button
+            type="button"
+            class="modal-close-btn"
+            (click)="closeModal()"
+            aria-label="Close dialog"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <div class="modal-title-area">
+          <h2 class="modal-title">{{ project.name }}</h2>
+          <p class="modal-subtitle">{{ project.subtitle }}</p>
+        </div>
+
+        <div class="modal-content-scroll">
+          <!-- Overview Section -->
+          <div class="modal-section">
+            <h4 class="modal-section-title">System Overview</h4>
+            <p class="modal-body-text">{{ project.fullOverview }}</p>
+          </div>
+
+          <!-- Architecture Section -->
+          <div class="modal-section">
+            <h4 class="modal-section-title">Technical Architecture & Decisions</h4>
+            <p class="modal-body-text">{{ project.technicalArchitecture }}</p>
+          </div>
+
+          <!-- Key Deliverables List -->
+          <div class="modal-section">
+            <h4 class="modal-section-title">Core Implementation Highlights</h4>
+            <ul class="modal-bullet-list">
+              @for (h of project.highlights; track h) {
+                <li class="modal-bullet-item">
+                  <mat-icon class="bullet-check">check_circle_outline</mat-icon>
+                  <span>{{ h }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Metrics / Specifications if available -->
+          @if (project.metrics && project.metrics.length > 0) {
+            <div class="modal-section">
+              <h4 class="modal-section-title">Engineering Specifications</h4>
+              <div class="modal-metrics-grid">
+                @for (m of project.metrics; track m.label) {
+                  <div class="modal-metric-card">
+                    <span class="modal-metric-val">{{ m.value }}</span>
+                    <span class="modal-metric-lbl">{{ m.label }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+
+          <!-- Stack Tags -->
+          <div class="modal-section">
+            <h4 class="modal-section-title">Technology Stack</h4>
+            <div class="modal-stack-chips">
+              @for (t of project.techStack; track t) {
+                <span class="modal-chip">{{ t }}</span>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <a
+            [href]="project.githubUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="modal-primary-btn"
+          >
+            <mat-icon>launch</mat-icon>
+            <span>Open GitHub Repository</span>
+          </a>
+          <button type="button" class="modal-secondary-btn" (click)="closeModal()">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</section>

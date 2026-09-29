@@ -1,9 +1,55 @@
-<div class="container">
-  <h2>Hackatons:</h2>
+<section id="hackathons-showcase" class="hackathons-section">
+  <!-- Section Header in Anthropic Editorial Style -->
+  <header class="section-header">
+    <div class="kicker-row">
+      <span class="chapter-number">02</span>
+      <span class="chapter-divider">/</span>
+      <span class="chapter-tag">COMPETITIVE SPRINT ENGINEERING</span>
+    </div>
+    <h2 class="section-title">Hackathons & Recognitions</h2>
+    <p class="section-lead">
+      High-velocity engineering sprints, international podium finishes, and industrial
+      programming olympiads delivered under strict 48–72 hour time constraints and enterprise benchmarks.
+    </p>
+  </header>
 
-  <div class="items">
-    @for (item of hackatons; track item) {
+  <!-- Hackathon Cards List -->
+  <div class="hackathons-list">
+    @for (item of hackatons(); track item.id) {
       <app-hackaton [data]="item"></app-hackaton>
     }
   </div>
-</div>
+
+  <!-- Competitive Engineering Philosophy Strip -->
+  <div class="philosophy-strip">
+    <div class="philosophy-card">
+      <div class="phil-header">
+        <mat-icon class="phil-icon">timer</mat-icon>
+        <h4 class="phil-title">Sprint Agility</h4>
+      </div>
+      <p class="phil-text">
+        Delivering comprehensive frontend clients within 48 to 72 continuous hours, from system specification to final live jury demonstration.
+      </p>
+    </div>
+
+    <div class="philosophy-card">
+      <div class="phil-header">
+        <mat-icon class="phil-icon">verified</mat-icon>
+        <h4 class="phil-title">Industrial Quality</h4>
+      </div>
+      <p class="phil-text">
+        Writing resilient, typed Angular codebases with strict linting, zero runtime regressions, and clean state boundaries under competition pressure.
+      </p>
+    </div>
+
+    <div class="philosophy-card">
+      <div class="phil-header">
+        <mat-icon class="phil-icon">military_tech</mat-icon>
+        <h4 class="phil-title">Podium Impact</h4>
+      </div>
+      <p class="phil-text">
+        Proven track record of top national and international standings, winning 3rd place bronze medals and national finalist nominations.
+      </p>
+    </div>
+  </div>
+</section>

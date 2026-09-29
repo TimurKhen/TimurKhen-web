@@ -1,17 +1,128 @@
-.container {
-  width: 90vw;
+.hackathons-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem 3.5rem;
+  }
+}
+
+/* Section Header */
+.section-header {
+  margin-bottom: 2.5rem;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 
-  .items {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+  .kicker-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--anthropic-terracotta, #d97757);
+    margin-bottom: 0.75rem;
 
-    @media (screen and max-width: 900px) {
+    .chapter-number {
+      font-weight: 600;
+    }
+
+    .chapter-divider {
+      color: var(--anthropic-text-muted, #736e65);
+    }
+
+    .chapter-tag {
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+
+  .section-title {
+    font-family: var(--font-serif, serif);
+    font-size: 2.75rem;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--anthropic-text-primary, #f5f4ef);
+    margin: 0 0 1rem 0;
+
+    @media (max-width: 768px) {
+      font-size: 2.1rem;
+    }
+  }
+
+  .section-lead {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--anthropic-text-secondary, #a39e94);
+    max-width: 720px;
+    margin: 0;
+  }
+}
+
+/* Hackathons List */
+.hackathons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+/* Philosophy Strip */
+.philosophy-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 840px) {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophy-card {
+    padding: 1.5rem 1.75rem;
+    background-color: var(--anthropic-surface, #1b1a18);
+    border: 1px solid var(--anthropic-border, #2d2b27);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--anthropic-surface-hover, #22201d);
+      border-color: var(--anthropic-border-hover, #48443e);
+    }
+
+    .phil-header {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+
+      .phil-icon {
+        font-size: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        color: var(--anthropic-terracotta, #d97757);
+      }
+
+      .phil-title {
+        font-family: var(--font-serif, serif);
+        font-size: 1.15rem;
+        font-weight: 500;
+        color: var(--anthropic-text-primary, #f5f4ef);
+        margin: 0;
+      }
+    }
+
+    .phil-text {
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--anthropic-text-secondary, #a39e94);
+      margin: 0;
     }
   }
 }
