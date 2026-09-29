@@ -1,0 +1,103 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+}
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --anthropic-bg: #141413;
+  --anthropic-surface: #1b1a18;
+  --anthropic-surface-hover: #22201d;
+  --anthropic-surface-elevated: #282622;
+  --anthropic-border: #2d2b27;
+  --anthropic-border-subtle: #24221f;
+  --anthropic-border-hover: #48443e;
+  --anthropic-terracotta: #d97757;
+  --anthropic-terracotta-light: #e88c6e;
+  --anthropic-terracotta-muted: rgba(217, 119, 87, 0.15);
+  --anthropic-sand: #eed8cb;
+  --anthropic-amber: #e2b47d;
+  --anthropic-text-primary: #f5f4ef;
+  --anthropic-text-secondary: #a39e94;
+  --anthropic-text-muted: #736e65;
+  --font-serif: 'Newsreader', 'Times New Roman', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--anthropic-bg);
+  color: var(--anthropic-text-primary);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(217, 119, 87, 0.35);
+  color: #ffffff;
+}
+
+.container::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--anthropic-bg);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #2b2926;
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #3d3a35;
+}
+
+.container {
+  -ms-overflow-style: none;
+  scrollbar-width: thin;
+}

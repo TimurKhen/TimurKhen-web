@@ -1,0 +1,22 @@
+<div
+  class="shower"
+  [class.is-open]="isOpen()"
+  [class]="'size-' + size()"
+  [class.is-border-not-rounded]="!isBorderRounded()"
+  [style.background]="gradientStyle()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
+  <div class="image">
+    @if (!imageError()) {
+      <img [src]="'icons/' + technology() + '.svg'" [alt]="technology() + ' logo'" (error)="handleImageError()" />
+    } @else {
+      <div class="fallback-icon" [style.color]="textColor()">
+        {{ initialLetter() }}
+      </div>
+    }
+  </div>
+  <div class="text" [class.is-open]="isOpen()">
+    <p [style.color]="textColor()">{{ technology() }}</p>
+  </div>
+</div>
