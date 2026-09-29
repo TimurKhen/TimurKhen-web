@@ -7,6 +7,11 @@
   align-items: center;
   gap: 4rem;
 
+  background-color: #0a0e17;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(11, 27, 61, 0) 0%, var(--color-bg) 100%);
+
+
   .avatar {
     display: flex;
     flex-direction: column;
