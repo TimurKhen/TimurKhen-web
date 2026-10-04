@@ -83,7 +83,7 @@ export class TechnologyShower {
 
   textColor = computed(() => {
     const tech = (this.technology() || '').toString().toLowerCase();
-    if (tech === 'js' || tech === 'javascript') {
+    if (tech === 'js' || tech === 'javascript' || tech === 'taigaui') {
       return '#000000';
     }
     return '#FFFFFF';

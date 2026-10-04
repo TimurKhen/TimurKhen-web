@@ -46,7 +46,7 @@ export class Hackatons {
         'Created splited admin page (web) and client (mobile). ' +
         'Admin page give ability of settings and creating multiple admins' +
         'Style created with using Taiga-UI.',
-      technologies: ['Angular', 'TS', 'Docker', 'RxJS', 'SCSS'],
+      technologies: ['Angular', 'TS', 'Docker', 'SCSS', 'RxJS', 'TaigaUI'],
       metrics: [
         { label: 'Standing', value: 'Finalist' },
         { label: 'Scope', value: 'International' },
