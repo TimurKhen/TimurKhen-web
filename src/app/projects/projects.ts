@@ -49,7 +49,7 @@ export class Projects {
         'Telegram Mini App Clicker - game with TMA Api connection.',
       techStack: ['Angular', 'TS', 'CSS', 'HTML'],
       githubUrl: 'https://github.com/TimurKhen/krutoy-toose',
-      year: '2024',
+      year: '2026',
       status: 'Production MVP',
     },
     {
